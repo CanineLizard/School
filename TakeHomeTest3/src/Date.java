@@ -20,8 +20,7 @@ public class Date {
     public void addDays(int addedDays) {
         day  = day + addedDays;
         if(day > daysOfTheMonth) {
-            day = daysOfTheMonth - day;
-            month = "" + (Integer.parseInt(month) + 1);
+
         }
 
     }

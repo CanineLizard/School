@@ -18,9 +18,11 @@ public class Date {
     }
 
     public void addDays(int addedDays) {
+        daysOfTheMonth = 31;
         day  = day + addedDays;
         if(day > daysOfTheMonth) {
-
+            day = day - daysOfTheMonth;
+            month = "" + (Integer.parseInt(month) + 1);
         }
 
     }

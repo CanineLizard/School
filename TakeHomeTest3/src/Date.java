@@ -18,11 +18,27 @@ public class Date {
     }
 
     public void addDays(int addedDays) {
-        daysOfTheMonth = 31;
-        day  = day + addedDays;
-        if(day > daysOfTheMonth) {
-            day = day - daysOfTheMonth;
-            month = "" + (Integer.parseInt(month) + 1);
+        int daysLeft = addedDays;
+        int daysLeftInMonth = 0;
+        while(daysLeft > 0) {
+
+            months(month);
+            daysLeftInMonth = daysOfTheMonth - day;
+            daysLeft -= daysLeftInMonth;
+            day = day + daysLeftInMonth;
+
+            if(daysLeft > daysOfTheMonth) {
+                month = "" + (Integer.parseInt(month) + 1);
+            } else {
+                day = day + daysLeft;
+            }
+
+
+            if(Integer.parseInt(month) > 12) {
+              month = "" + 1;
+              year = "" + (Integer.parseInt(year) + 1);
+            }
+
         }
 
     }
@@ -85,5 +101,56 @@ public class Date {
                 daysOfTheMonth = 30;
                 break;
         }
+
+        switch(month) {
+            case "1":
+                this.month = "1";
+                daysOfTheMonth = 31;
+                break;
+            case "2":
+                this.month = "2";
+                daysOfTheMonth = 28;
+                break;
+            case "3":
+                this.month = "3";
+                daysOfTheMonth = 31;
+            case "4":
+                this.month = "4";
+                daysOfTheMonth = 30;
+                break;
+            case "5":
+                this.month = "5";
+                daysOfTheMonth = 31;
+                break;
+            case "6":
+                this.month = "6";
+                daysOfTheMonth = 30;
+                break;
+            case "7":
+                this.month = "7";
+                daysOfTheMonth = 31;
+                break;
+            case "8":
+                this.month = "8";
+                daysOfTheMonth = 31;
+                break;
+            case "9":
+                this.month = "9";
+                daysOfTheMonth = 30;
+                break;
+            case "10":
+                this.month = "10";
+                daysOfTheMonth = 31;
+                break;
+            case "11":
+                this.month = "11";
+                daysOfTheMonth = 30;
+                break;
+            case "12":
+                this.month = "12";
+                daysOfTheMonth = 31;
+                break;
+        }
+
     }
 }

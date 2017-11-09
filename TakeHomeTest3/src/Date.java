@@ -19,24 +19,36 @@ public class Date {
 
     public void addDays(int addedDays) {
         int daysLeft = addedDays;
-        int daysLeftInMonth = 0;
-        while(daysLeft > 0) {
+        months(month);
 
-            months(month);
-            daysLeftInMonth = daysOfTheMonth - day;
-            daysLeft -= daysLeftInMonth;
+        if(day + addedDays < daysOfTheMonth) {
+            day = day + addedDays;
+        } else {
+
+            int daysLeftInMonth = daysOfTheMonth - day;
             day = day + daysLeftInMonth;
+            daysLeft = daysLeft - daysLeftInMonth;
+            month = "" + (Integer.parseInt(month) + 1);
+            while(daysLeft > 0) {
+                if(daysLeft < daysLeftInMonth) {
 
-            if(daysLeft > daysOfTheMonth) {
-                month = "" + (Integer.parseInt(month) + 1);
-            } else {
-                day = day + daysLeft;
-            }
+                    day = daysLeft;
+                    daysLeft = daysLeft - daysLeft;
+                } else {
+                    months(month);
+                    daysLeftInMonth = daysOfTheMonth;
+                    daysLeft = daysLeft - daysLeftInMonth;
 
+                }
 
-            if(Integer.parseInt(month) > 12) {
-              month = "" + 1;
-              year = "" + (Integer.parseInt(year) + 1);
+                if(daysLeft > daysOfTheMonth) {
+                    month = "" + (Integer.parseInt(month) + 1);
+                }
+
+                if(Integer.parseInt(month) > 12) {
+                    month = "" + 1;
+                    year = "" + (Integer.parseInt(year) + 1);
+                }
             }
 
         }
@@ -98,7 +110,7 @@ public class Date {
                 break;
             case "December":
                 this.month = "12";
-                daysOfTheMonth = 30;
+                daysOfTheMonth = 31;
                 break;
         }
 

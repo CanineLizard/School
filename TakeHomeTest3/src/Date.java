@@ -21,7 +21,7 @@ public class Date {
         int daysLeft = addedDays;
         months(month);
 
-        if(day + addedDays < daysOfTheMonth) {
+        if(day + addedDays <= daysOfTheMonth) {
             day = day + addedDays;
         } else {
 
@@ -31,9 +31,9 @@ public class Date {
             month = "" + (Integer.parseInt(month) + 1);
             while(daysLeft > 0) {
                 if(daysLeft < daysLeftInMonth) {
-
                     day = daysLeft;
                     daysLeft = daysLeft - daysLeft;
+                    month = "" + (Integer.parseInt(month) + 1);
                 } else {
                     months(month);
                     daysLeftInMonth = daysOfTheMonth;
@@ -126,6 +126,7 @@ public class Date {
             case "3":
                 this.month = "3";
                 daysOfTheMonth = 31;
+                break;
             case "4":
                 this.month = "4";
                 daysOfTheMonth = 30;

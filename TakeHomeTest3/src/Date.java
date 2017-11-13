@@ -63,15 +63,15 @@ public class Date {
             day = day - subDays;
         } else {
 
-            int daysLeftInMonth = daysOfTheMonth - day;
-            day = day + daysLeftInMonth;
-            daysLeft = daysLeft - daysLeftInMonth;
+            int daysLeftInMonth = daysOfTheMonth;
+            daysLeft = daysLeft - day;
             month = "" + (Integer.parseInt(month) - 1);
             while(daysLeft > 0) {
+                months(month);
+                daysLeftInMonth = daysOfTheMonth;
                 if(daysLeft < daysLeftInMonth) {
-                    day = daysLeft;
+                    day = daysLeftInMonth - daysLeft;
                     daysLeft = daysLeft - daysLeft;
-                    month = "" + (Integer.parseInt(month) - 1);
                 } else {
                     months(month);
                     daysLeftInMonth = daysOfTheMonth;

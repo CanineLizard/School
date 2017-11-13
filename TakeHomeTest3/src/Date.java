@@ -55,8 +55,42 @@ public class Date {
 
     }
 
-    public int subtractDays(int subDays) {
-        return 0;
+    public void subtractDays(int subDays) {
+        int daysLeft = subDays;
+        months(month);
+
+        if(day - subDays <= daysOfTheMonth && day - subDays > 0) {
+            day = day - subDays;
+        } else {
+
+            int daysLeftInMonth = daysOfTheMonth - day;
+            day = day + daysLeftInMonth;
+            daysLeft = daysLeft - daysLeftInMonth;
+            month = "" + (Integer.parseInt(month) - 1);
+            while(daysLeft > 0) {
+                if(daysLeft < daysLeftInMonth) {
+                    day = daysLeft;
+                    daysLeft = daysLeft - daysLeft;
+                    month = "" + (Integer.parseInt(month) - 1);
+                } else {
+                    months(month);
+                    daysLeftInMonth = daysOfTheMonth;
+                    daysLeft = daysLeft - daysLeftInMonth;
+
+                }
+
+                if(daysLeft > daysOfTheMonth) {
+                    month = "" + (Integer.parseInt(month) - 1);
+                }
+
+                if(Integer.parseInt(month) < 1) {
+                    month = "" + 12;
+                    year = "" + (Integer.parseInt(year) - 1);
+                }
+            }
+
+        }
+
     }
 
     public String toString() {

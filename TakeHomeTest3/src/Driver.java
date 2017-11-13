@@ -13,6 +13,7 @@ public class Driver {
         String year;
 
         int plusDays;
+        int subDays;
 
         System.out.print("Enter the date");
         date = input.nextLine();
@@ -36,7 +37,12 @@ public class Driver {
             System.out.println(d);
 
         } else if(user.toLowerCase().equals("subtract")) {
+            System.out.println("Enter the amount of days you want to subtract");
+            subDays = input.nextInt();
 
+            d.subtractDays(subDays);
+
+            System.out.println(d);
         }
     }
 }

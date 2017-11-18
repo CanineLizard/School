@@ -1,9 +1,20 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Driver {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+
+
+        try {
+            Scanner inFile = new Scanner(new File(""));
+        }catch(FileNotFoundException e) {
+
+        }
+
         Date d;
 
         String date;
@@ -18,10 +29,10 @@ public class Driver {
         System.out.print("Enter the date");
         date = input.nextLine();
 
-        System.out.println("Would you like to add to subtract days?");
+        System.out.println("Would you like to add or subtract days?");
         user = input.nextLine();
 
-        StringTokenizer st = new StringTokenizer(date, "/");
+        StringTokenizer st = new StringTokenizer(date, "/ ");
         month = st.nextToken();
         day = Integer.parseInt(st.nextToken());
         year = st.nextToken();

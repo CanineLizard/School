@@ -29,6 +29,7 @@ public class Date {
             day = day + daysLeftInMonth;
             daysLeft = daysLeft - daysLeftInMonth;
             month = "" + (Integer.parseInt(month) + 1);
+
             while(daysLeft > 0) {
                 if(daysLeft < daysLeftInMonth) {
                     day = daysLeft;
@@ -71,6 +72,9 @@ public class Date {
                 months(month);
                 daysLeftInMonth = daysOfTheMonth;
                 if(daysLeft < daysLeftInMonth) {
+                    month = "" + (Integer.parseInt(month) - 1);
+                    months(month);
+                    daysLeftInMonth = daysOfTheMonth;
                     day = daysLeftInMonth - daysLeft;
                     daysLeft = daysLeft - daysLeft;
                 } else {
@@ -80,7 +84,7 @@ public class Date {
 
                 }
 
-                if(daysLeft > daysOfTheMonth) {
+                if(daysLeft > daysLeftInMonth) {
                     month = "" + (Integer.parseInt(month) - 1);
                 }
 
@@ -111,6 +115,7 @@ public class Date {
             case "March":
                 this.month = "3";
                 daysOfTheMonth = 31;
+                break;
             case "April":
                 this.month = "4";
                 daysOfTheMonth = 30;

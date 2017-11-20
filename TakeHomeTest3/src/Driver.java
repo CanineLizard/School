@@ -16,6 +16,7 @@ public class Driver {
         }
 
         Date d;
+        Date d2;
 
         String date;
         String user;
@@ -54,6 +55,21 @@ public class Driver {
             d.subtractDays(subDays);
 
             System.out.println(d);
+        } else if(user.toLowerCase().equals("3")) {
+            System.out.println("Enter a second date");
+            date = input.nextLine();
+
+            st = new StringTokenizer(date, "/ ");
+            month = st.nextToken();
+            day = Integer.parseInt(st.nextToken());
+            year = st.nextToken();
+
+            d2 = new Date(month, day, year);
+
+             System.out.println(d.daysBetween(d2));
+
+
+
         }
     }
 }

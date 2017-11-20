@@ -98,6 +98,23 @@ public class Date {
 
     }
 
+    public int daysBetween(Date other) {
+
+        if(month.equals(other.month) && year.equals(other.year)) {
+            return other.day - day;
+        } else if((Integer.parseInt(year) - Integer.parseInt(other.year)) > 0) {
+
+        } else if(Integer.parseInt(year) - Integer.parseInt(other.year) < 0) {
+
+        } else if(Integer.parseInt(year) - Integer.parseInt(other.year) == 0) {
+
+        }
+
+
+
+        return 0;
+    }
+
     public String toString() {
         return month +"/" + day + "/" + year;
     }

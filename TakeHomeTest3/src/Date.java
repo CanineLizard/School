@@ -99,20 +99,33 @@ public class Date {
     }
 
     public int daysBetween(Date other) {
+        int daysToDate = 0;
 
         if(month.equals(other.month) && year.equals(other.year)) {
             return other.day - day;
-        } else if((Integer.parseInt(year) - Integer.parseInt(other.year)) > 0) {
+        } else if((Integer.parseInt(month) - Integer.parseInt(other.month)) > 0) {
 
-        } else if(Integer.parseInt(year) - Integer.parseInt(other.year) < 0) {
 
-        } else if(Integer.parseInt(year) - Integer.parseInt(other.year) == 0) {
 
+        } else if((Integer.parseInt(month) - Integer.parseInt(month)) < 0 || Integer.parseInt(other.year) - Integer.parseInt(year) > 0) {
+            months(month);
+            int daysLeftInMonth = daysOfTheMonth - day;
+            daysToDate += daysLeftInMonth;
+            month = "" + (Integer.parseInt(month) + 1);
+            while(!month.equals(other.month) || day != other.day || !year.equals(other.year)) {
+                addDays(1);
+                daysToDate++;
+            }
         }
 
 
 
-        return 0;
+        return daysToDate;
+    }
+
+    public boolean equals(Date other) {
+
+        return month.equals(other.month) && day == day && year.equals(other.year);
     }
 
     public String toString() {

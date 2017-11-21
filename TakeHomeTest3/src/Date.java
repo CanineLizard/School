@@ -108,11 +108,7 @@ public class Date {
 
 
         } else if((Integer.parseInt(month) - Integer.parseInt(month)) < 0 || Integer.parseInt(other.year) - Integer.parseInt(year) > 0) {
-            months(month);
-            int daysLeftInMonth = daysOfTheMonth - day;
-            daysToDate += daysLeftInMonth;
-            month = "" + (Integer.parseInt(month) + 1);
-            while(!month.equals(other.month) || day != other.day || !year.equals(other.year)) {
+            while(!equals(other)) {
                 addDays(1);
                 daysToDate++;
             }
@@ -125,7 +121,7 @@ public class Date {
 
     public boolean equals(Date other) {
 
-        return month.equals(other.month) && day == day && year.equals(other.year);
+        return month.equals(other.month) && day == other.day && year.equals(other.year);
     }
 
     public String toString() {

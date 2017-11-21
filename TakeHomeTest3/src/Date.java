@@ -44,6 +44,7 @@ public class Date {
 
                 if(daysLeft > daysOfTheMonth) {
                     month = "" + (Integer.parseInt(month) + 1);
+                    day = 1;
                 }
 
                 if(Integer.parseInt(month) > 12) {
@@ -71,6 +72,8 @@ public class Date {
             while(daysLeft > 0) {
                 months(month);
                 daysLeftInMonth = daysOfTheMonth;
+
+
                 if(daysLeft < daysLeftInMonth) {
                     month = "" + (Integer.parseInt(month) - 1);
                     months(month);
@@ -103,14 +106,43 @@ public class Date {
 
         if(month.equals(other.month) && year.equals(other.year)) {
             return other.day - day;
-        } else if((Integer.parseInt(month) - Integer.parseInt(other.month)) > 0) {
+        } else if((Integer.parseInt(month) - Integer.parseInt(other.month)) > 0 || Integer.parseInt(year) - Integer.parseInt(other.year) > 0) {
+            while(!equals(other)) {
+                months(month);
+                day -= 1;
+                daysToDate++;
 
+                if(day < 1) {
+                    month = "" + (Integer.parseInt(month) - 1);
+                    months(month);
+                    day = daysOfTheMonth;
+                    if(Integer.parseInt(month) < 1) {
+                        year = "" + (Integer.parseInt(year) - 1);
+                        month = "" + 12;
+                        months(month);
+                        day = daysOfTheMonth;
+                    }
+                }
+            }
 
+            return daysToDate;
 
         } else if((Integer.parseInt(month) - Integer.parseInt(month)) < 0 || Integer.parseInt(other.year) - Integer.parseInt(year) > 0) {
             while(!equals(other)) {
-                addDays(1);
+                months(month);
+                day += 1;
                 daysToDate++;
+                if(day > daysOfTheMonth) {
+                    month = "" + (Integer.parseInt(month) + 1);
+                    day = 1;
+                    if(Integer.parseInt(month) > 12) {
+                        year = "" + (Integer.parseInt(year) + 1);
+                        month = "" + 1;
+                        day = 1;
+                    }
+                }
+
+                System.out.println(daysToDate);
             }
         }
 

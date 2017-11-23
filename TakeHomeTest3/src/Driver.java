@@ -1,3 +1,10 @@
+/**
+ * Driver class that uses the date class
+ *
+ * @Author Austin White
+ * @version 11/22/2017
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -8,18 +15,11 @@ public class Driver {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-
-        try {
-            Scanner inFile = new Scanner(new File(""));
-        }catch(FileNotFoundException e) {
-
-        }
-
         Date d;
         Date d2;
 
         String date;
-        String user;
+        String user = "";
         String month;
         int day;
         String year;
@@ -27,46 +27,83 @@ public class Driver {
         int plusDays;
         int subDays;
 
-        System.out.print("Enter the date");
-        date = input.nextLine();
-
-        System.out.println("Would you like to add or subtract days?");
-        user = input.nextLine();
-
-        StringTokenizer st = new StringTokenizer(date, "/ ");
-        month = st.nextToken();
-        day = Integer.parseInt(st.nextToken());
-        year = st.nextToken();
-
-        d = new Date(month, day, year);
-
-        if(user.toLowerCase().equals("add")) {
-            System.out.println("Enter the amount of days you want to add");
-            plusDays = input.nextInt();
-
-            d.addDays(plusDays);
-
-            System.out.println(d);
-
-        } else if(user.toLowerCase().equals("subtract")) {
-            System.out.println("Enter the amount of days you want to subtract");
-            subDays = input.nextInt();
-
-            d.subtractDays(subDays);
-
-            System.out.println(d);
-        } else if(user.toLowerCase().equals("3")) {
-            System.out.println("Enter a second date");
+        //loops as long as the user does not enter 4
+        while(!user.equals("4")) {
+            //asks for the date
+            System.out.println("Enter the date");
             date = input.nextLine();
 
-            st = new StringTokenizer(date, "/ ");
+            //displays the menu and waits for input
+            System.out.println("1. Add days \n2. subtract days \n3. amount of days between two days \n4. quit");
+            user = input.nextLine();
+
+            //uses a string tokenizer to get month day and year
+            StringTokenizer st = new StringTokenizer(date, "/, ");
             month = st.nextToken();
             day = Integer.parseInt(st.nextToken());
             year = st.nextToken();
 
-            d2 = new Date(month, day, year);
+            //creats a date object
+            d = new Date(month, day, year);
 
-             System.out.println(d.daysBetween(d2));
+            //checks if the user input is 1
+            if(user.toLowerCase().equals("1")) {
+
+                //asks for the amount of days the user wants to add
+                System.out.println("Enter the amount of days you want to add");
+                plusDays = input.nextInt();
+
+                //calls the add method
+                d.addDays(plusDays);
+
+                //prints the date
+                System.out.println(d);
+                input.nextLine();
+
+                //checks if the user input is 2
+            } else if(user.toLowerCase().equals("2")) {
+
+                //asks for the amount of days the user wants to subtract
+                System.out.println("Enter the amount of days you want to subtract");
+                subDays = input.nextInt();
+
+                //calls the subtract method
+                d.subtractDays(subDays);
+
+                //prints the date
+                System.out.println(d);
+                input.nextLine();
+
+                //checks if the user input is 3
+            } else if(user.toLowerCase().equals("3")) {
+
+                //asks for a second date
+                System.out.println("Enter a second date");
+                date = input.nextLine();
+
+                //uses the string toeknizer for the second date
+                st = new StringTokenizer(date, "/, ");
+                month = st.nextToken();
+                day = Integer.parseInt(st.nextToken());
+                year = st.nextToken();
+
+                //creates another date object
+                d2 = new Date(month, day, year);
+
+                //prints the days between the dates
+                System.out.println(d.daysBetween(d2));
+                input.nextLine();
+
+                //checks if the user input is 4
+            } else if(user.equals("4")) {
+
+                //prints a goodbye message
+                System.out.println("Goodbye");
+
+                //if none of the menu choices were entered tell the user
+            } else {
+                System.out.println("That was not a menu choice. Please Try again");
+            }
 
         }
     }

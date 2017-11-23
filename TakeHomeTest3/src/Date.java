@@ -1,3 +1,9 @@
+/**
+ * Date class. adds days from as date, subtract days from a date, finds the amount of days between two days
+ *
+ * @author Austin White
+ * @version 11/22/2017
+ */
 public class Date {
 
     private String month;
@@ -5,18 +11,34 @@ public class Date {
     private String year;
     private int daysOfTheMonth;
 
+    /**
+     * Default constructor
+     * sets all the fields to a default value of zero
+     */
     public Date() {
        month = "";
        day = 0;
        year = "";
     }
 
+    /**
+     * over ride constructor
+     * Sets all the fields to a given input
+     * @param month
+     * @param day
+     * @param year
+     */
     public Date(String month, int day, String year) {
         this.month = month;
         this.day = day;
         this.year = year;
     }
 
+    /**
+     * addDays method
+     * adds the amount of given days to a date
+     * @param addedDays
+     */
     public void addDays(int addedDays) {
         int daysLeft = addedDays;
         months(month);
@@ -57,7 +79,11 @@ public class Date {
 
     }
 
-
+    /**
+     * Subtract Days method
+     * subtracts the amount of given days from a date
+     * @param subDays
+     */
     public void subtractDays(int subDays) {
         int daysLeft = subDays;
         months(month);
@@ -101,12 +127,18 @@ public class Date {
 
     }
 
+    /**
+     * daysBetween methods
+     * Finds the amount of days from this date class and another date class
+     * @param other
+     * @return int - returns the number of days from two date classes
+     */
     public int daysBetween(Date other) {
         int daysToDate = 0;
 
         if(month.equals(other.month) && year.equals(other.year)) {
             return other.day - day;
-        } else if((Integer.parseInt(month) - Integer.parseInt(other.month)) > 0 || Integer.parseInt(year) - Integer.parseInt(other.year) > 0) {
+        } else if((Integer.parseInt(other.month) - Integer.parseInt(month)) > 0 || Integer.parseInt(year) - Integer.parseInt(other.year) > 0) {
             while(!equals(other)) {
                 months(month);
                 day -= 1;
@@ -127,7 +159,7 @@ public class Date {
 
             return daysToDate;
 
-        } else if((Integer.parseInt(month) - Integer.parseInt(month)) < 0 || Integer.parseInt(other.year) - Integer.parseInt(year) > 0) {
+        } else if((Integer.parseInt(month) - Integer.parseInt(other.month)) < 0 || Integer.parseInt(other.year) - Integer.parseInt(year) > 0) {
             while(!equals(other)) {
                 months(month);
                 day += 1;
@@ -141,8 +173,6 @@ public class Date {
                         day = 1;
                     }
                 }
-
-                System.out.println(daysToDate);
             }
         }
 
@@ -151,22 +181,39 @@ public class Date {
         return daysToDate;
     }
 
+    /**
+     * equals method
+     * Checks if two date classes are equal
+     * @param other
+     * @return boolean - true if the dates are the same
+     */
     public boolean equals(Date other) {
 
         return month.equals(other.month) && day == other.day && year.equals(other.year);
     }
 
+    /**
+     * toString method
+     * returns the fields as a String
+     * @return String
+     */
     public String toString() {
         return month +"/" + day + "/" + year;
     }
 
+    /**
+     * months method
+     * changes the month to a number format to make it easier to use for the add, subtract, and days between methods,
+     * and gives the amount of days in the month
+     * @param month
+     */
     public void months(String month) {
         switch(month) {
             case "January":
                 this.month = "1";
                 daysOfTheMonth = 31;
                 break;
-            case "Febuary":
+            case "February":
                 this.month = "2";
                 daysOfTheMonth = 28;
                 break;
@@ -263,5 +310,73 @@ public class Date {
                 break;
         }
 
+    }
+
+    /**
+     * getDate method
+     * gets the date based on the format given
+     * @param format
+     * @return String - returns a short or long version of the date
+     */
+    public String getDate(char format) {
+        if(format == 'L' || format == 'l') {
+            switch(month) {
+                case "1":
+                    this.month = "January";
+                    daysOfTheMonth = 31;
+                    break;
+                case "2":
+                    this.month = "February";
+                    daysOfTheMonth = 28;
+                    break;
+                case "3":
+                    this.month = "March";
+                    daysOfTheMonth = 31;
+                    break;
+                case "4":
+                    this.month = "April";
+                    daysOfTheMonth = 30;
+                    break;
+                case "5":
+                    this.month = "May";
+                    daysOfTheMonth = 31;
+                    break;
+                case "6":
+                    this.month = "June";
+                    daysOfTheMonth = 30;
+                    break;
+                case "7":
+                    this.month = "July";
+                    daysOfTheMonth = 31;
+                    break;
+                case "8":
+                    this.month = "August";
+                    daysOfTheMonth = 31;
+                    break;
+                case "9":
+                    this.month = "September";
+                    daysOfTheMonth = 30;
+                    break;
+                case "10":
+                    this.month = "October";
+                    daysOfTheMonth = 31;
+                    break;
+                case "11":
+                    this.month = "November";
+                    daysOfTheMonth = 30;
+                    break;
+                case "12":
+                    this.month = "December";
+                    daysOfTheMonth = 31;
+                    break;
+            }
+
+            return month + " " + day + ", " + year;
+        } else if(format == 'S' || format == 's') {
+            months(month);
+            return month + "/" + day + "/" + year;
+        }
+
+        return "";
     }
 }

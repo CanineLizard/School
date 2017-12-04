@@ -7,11 +7,8 @@ public class GameLogic {
 
         String user;
 
-        do {
-
-
-            user = input.nextLine();
-        }while(user.toLowerCase().equals("q"));
+             deck.shuffle();
+            System.out.println(deck);
 
 
     }

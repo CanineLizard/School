@@ -32,11 +32,25 @@ public class Deck {
 
     public void shuffle() {
         for(int i = 0; i < 1000; i++) {
-            int place1 = rand.nextInt(52);
-            int place2 = rand.nextInt(52);
+            for(int j = 0; j < card.length; j++) {
+                int place1 = rand.nextInt(52);
+                int place2 = rand.nextInt(52);
 
-
+                Card tempCard = card[place1];
+                card[place1] = card[place2];
+                card[place2] = tempCard;
+            }
         }
+    }
+
+    public String toString() {
+
+        String deck = "";
+        for(int i = 0; i < card.length; i++) {
+            deck += card[i].toString() + "\n\n";
+        }
+
+        return deck;
     }
 
 

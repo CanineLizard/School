@@ -43,6 +43,18 @@ public class Deck {
         }
     }
 
+    public Card getTopCard() {
+        for(int i = 0; i < card.length; i++) {
+
+            if(card[i] != null) {
+                Card tempCard = card[i];
+                card[i] =  null;
+                return tempCard;
+            }
+        }
+        return null;
+    }
+
     public String toString() {
 
         String deck = "";

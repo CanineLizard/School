@@ -11,7 +11,11 @@ public class GameLogic {
         String user;
 
              do {
+                    int value = deck.getTopCard().getValue();
 
+                    if (value == 11) {
+                        
+                    }
                     System.out.println(deck.getTopCard().toString());
                     System.out.println(deck.getTopCard().getValue());
 
